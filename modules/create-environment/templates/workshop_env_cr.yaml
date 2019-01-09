@@ -108,7 +108,7 @@ Resources:
             - ec2:DescribeVolumes
             - ec2:DescribeVolumesModifications
             - ec2:AssociateIamInstanceProfile
-            - ec2:ModifyVolumes
+            - ec2:ModifyVolume
             - ec2:ModifyVolumeAttributes
             - ec2:RebootInstances
             - ec2:ReplaceIamInstanceProfileAssociation
@@ -123,7 +123,7 @@ Resources:
       Runtime: python3.6
       Description: Cloud9 Instance Role Function
       MemorySize: 128
-      Timeout: 300
+      Timeout: 900
       Role:
         Fn::GetAtt: C9InstanceFunctionRole.Arn
       Code:

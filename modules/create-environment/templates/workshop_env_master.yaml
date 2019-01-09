@@ -46,7 +46,7 @@ Parameters:
     Description: S3 bucket name where nested templates are stored. This string can
       include numbers, lowercase letters, uppercase letters, and hyphens (-). It cannot
       start or end with a hyphen (-)
-    Default: mombergm-us-west-2
+    Default: modernization-workshop-west-2
   BucketPrefix:
     AllowedPattern: ^[0-9a-zA-Z-/]*$
     ConstraintDescription: S3 key prefix can include numbers, lowercase letters, uppercase
@@ -54,7 +54,7 @@ Parameters:
     Type: String
     Description: S3 prefix for nested template artifacts. Key prefix can include numbers,
       lowercase letters, uppercase letters, hyphens (-), and forward slash (/)
-    Default: cfn/modernization-aws-workshop
+    Default: create-environment
   C9InstanceType:
     Description: The instance type of the new Amazon EC2 instance that AWS Cloud9
       will launch for the development environment (for example, 't2.micro').
