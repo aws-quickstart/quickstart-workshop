@@ -1,13 +1,13 @@
 ---
 AWSTemplateFormatVersion: '2010-09-09'
-Description: AWS Modernization Workshop - CloudFormation template for creating environment.
+Description: AWS Quick Start Workshop - CloudFormation template for creating environment.
   This AWS CloudFormation template will set up an AWS Cloud9 instance for use with
-  the modules contained in the AWS modernization workshop. **WARNING** This template
+  the modules contained in the AWS Quick Start workshop. **WARNING** This template
   creates AWS resources. You will be billed for the AWS resources used if you create
   a stack from this template
 Metadata:
   LICENSE: |-
-    Copyright 2018 Amazon Web Services
+    Copyright 2019 Amazon Web Services
     Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
 
       http://www.apache.org/licenses/LICENSE-2.0
@@ -46,7 +46,7 @@ Parameters:
     Description: S3 bucket name where nested templates are stored. This string can
       include numbers, lowercase letters, uppercase letters, and hyphens (-). It cannot
       start or end with a hyphen (-)
-    Default: modernization-workshop-west-2
+    Default: quickstart-workshop-west-2
   BucketPrefix:
     AllowedPattern: ^[0-9a-zA-Z-/]*$
     ConstraintDescription: S3 key prefix can include numbers, lowercase letters, uppercase

@@ -1,12 +1,12 @@
 ---
 AWSTemplateFormatVersion: '2010-09-09'
-Description: AWS Modernization Workshop - CloudFormation template for creating environment.
+Description: AWS Quick Start Workshop - CloudFormation template for creating environment.
   This template screates a VPC with DNS and Public IPs enabled. **WARNING** This template
   creates AWS resources. You will be billed for the AWS resources used if you create
   a stack from this template.
 Metadata:
   LICENSE: |-
-    Copyright 2018 Amazon Web Services
+    Copyright 2019 Amazon Web Services
     Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
 
       http://www.apache.org/licenses/LICENSE-2.0
@@ -39,7 +39,7 @@ Resources:
         - CIDR
       Tags:
       - Key: Name
-        Value: AWS Modernization Workshop VPC
+        Value: AWS Quick Start Workshop VPC
       - Key: Application
         Value:
           Ref: AWS::StackName
