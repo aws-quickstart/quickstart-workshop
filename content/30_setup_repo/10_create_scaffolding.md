@@ -6,7 +6,7 @@ weight = 20
 
 The GitHub repository for each Quick Start includes the following folders:
 
-- **ci** - (required) Contains the configuration file and parameter files used for automated testing.
+- **docs** - (optional) Contains the Quick Start documentation
 - **templates** - (required) Contains the AWS CloudFormation templates for the Quick Start. All templates use the .template file extension.
 - **scripts** - (optional) Contains the scripts and configuration files that are used in the Quick Start; for example, to orchestrate the bootstrap, install or configure an app, or update a host.
 - **functions** - (optional) Contains lambda functions used in the Quick Start.
@@ -27,7 +27,7 @@ Clone the repo by running the following command. Replace *GITHUB_REPO_URL* with 
 
 You should see following output.
 <pre>
-Admin:~/environment $ git clone https://github.com/sshvans/qs-workshop.git
+Admin:~/environment $ git clone https://github.com/davmayd2/qs-workshop.git
 Cloning into 'qs-workshop'...
 warning: You appear to have cloned an empty repository.
 </pre>
@@ -58,16 +58,24 @@ To quick fix the issue, run `git clone GITHUB_REPO_URL` with HTTPS URL of your G
 ### Create scaffolding
 When a Quick Start repo is created by the Quick Start team, all the folders are pre-created for you. But, as you are creating your own repo for this workshop, you need to create necessary folders.
 
-To make this task easy, we have pre-created the scaffolding and configurations files. Run the following commands to download the scaffolding and files.
-
-1. Go to repo
+1. In your IDE's terminal window, navigate to the repository
 
  	`cd qs-workshop`
 
-2. Download and load the content in your repo
+2. Create the necessary subdirectories
 
 	```
-	curl https://raw.githubusercontent.com/aws-quickstart/quickstart-workshop-labs/master/workshop-base/base.tar | tar -x
+	mkdir docs
+	mkdir submodules
+	mkdir templates
+	```
+
+3. Create the necessary files
+
+	```
+	echo > .taskcat.yml
+	echo > templates/workshop.template.yaml
+	echo > templates/workshop-master.template.yaml
 	```
 
 3. Add and Commit your changes
@@ -80,10 +88,10 @@ To make this task easy, we have pre-created the scaffolding and configurations f
 	
 	<pre>
 	[master (root-commit) ab0660b] Load base content
-	 	 3 files changed, 33 insertions(+)
-		 create mode 100644 ci/taskcat.yml
-		 create mode 100644 ci/workshop_input.json
+	 	 3 files changed, 3 insertions(+)
+		 create mode 100644 .taskcat.yml
 		 create mode 100644 templates/workshop.template.yaml
+		 create mode 100644 templates/workshop-master.template.yaml
 	</pre>
 
 4. Now that you have your changes committed locally to your repo, we will push these changes to github remote master branch.

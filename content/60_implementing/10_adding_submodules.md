@@ -1,12 +1,12 @@
-+++
+﻿+++
 title = "Adding submodules"
 chapter = false
 weight = 10
 +++
 
-The Quick Start catalog has **160+** Quick Starts. It includes a [VPC Quick Start](https://aws.amazon.com/quickstart/architecture/vpc/) which builds a virtual private network (VPC) environment with public and private subnets, following AWS best practices. 
+The Quick Start catalog has **170+** Quick Starts. It includes a [VPC Quick Start](https://aws.amazon.com/quickstart/architecture/vpc/) which builds a virtual private network (VPC) environment with public and private subnets, following AWS best practices. It also includes [Linux Bastion](https://aws.amazon.com/quickstart/architecture/linux-bastion/) and [Microsoft Remote Desktop Gateway](https://aws.amazon.com/quickstart/architecture/rd-gateway/) Quick Starts that allow users to access assets in private subnets via bastion hosts.
 
-You will use the VPC Quick Start to create a VPC in your workshop Quick Start. By using an existing Quick Start, you get the following benefits:
+You will use the VPC Quick Start to create a VPC in your workshop Quick Start, and the Bastion Quick Starts to allow remote access to the solution. By using existing Quick Starts, you get the following benefits:
 
 - Re-use the architeture built by AWS SAs, which follows the AWS best practices.
 - Automatically get the AMI and security updates for VPC and Linux bastion stacks.
@@ -15,24 +15,28 @@ You will use the VPC Quick Start to create a VPC in your workshop Quick Start. B
 - Avoid duplicating same code across multiple Quick Starts
 
 ### Git Submodules
-To use the VPC Quick Start in your workshop Quick Start, you will use Git Submodules.
+To use these existing Quick Starts in your workshop Quick Start, you will use Git Submodules.
 
 Git Submodules allow you to keep a Git repository as a subdirectory of another Git repository. This lets you clone another repository into your project and keep your commits separate.
 
-We will add a submodule to the **qs-workshop** repo - QuickStart VPC.
+We will add submodules to the **qs-workshop** repo - QuickStart VPC, Linux Bastion, and Remote Desktop Gateway.
 
-### Add a VPC to your project
+### Add submodules to your project
 Change directory to the root of your repo.
 
 Make sure you are in *qs-workshop* folder.
 
-Add QuickStart VPC as a submodule.
+Add submodules.
 
 ```
 git submodule add -b master https://github.com/aws-quickstart/quickstart-aws-vpc.git submodules/quickstart-aws-vpc
+git submodule add -b master https://github.com/aws-quickstart/quickstart-linux-bastion.git submodules/quickstart-linux-bastion
+git submodule add -b master https://github.com/aws-quickstart/quickstart-microsoft-rdgateway.git submodules/quickstart-microsoft-rdgateway
+git submodule update --init --recursive
+
 ```
 
-By running the above command, you have added the **quickstart-aws-vpc** git repo as a submodule in the **submodules/quickstart-aws-vpc** directory of qs-workshop repo, and the submodule is tracking the master branch of the *quickstart-aws-vpc*.
+By running the above commands, you have added the **quickstart-aws-vpc**, **quickstart-linux-bastion**, and **quickstart-microsoft-rdgateway** git repositories as submodules in the **submodules/** directory of qs-workshop repo, and the submodules are tracking the master branch of their respective repositories.
 
 Now, Commit your changes and push to the develop branch.
 
@@ -48,23 +52,16 @@ Similarly, if you are cloning an existing repo that already contains a submodule
 Your project directory **qs-workshop** should look like below.
 
 <pre>
-    ├── ci
-    │   ├── taskcat.yml
-    │   └── workshop_input.json
+
+    ├── .git
+    ├── docs
     ├── submodules
-    │   ├── quickstart-aws-vpc
-    │       ├── LICENSE.txt
-    │       ├── NOTICE.txt
-    │       ├── README.md
-    │       ├── ci
-    │       │   ├── (test input files ...)
-    │       │   └── taskcat.yml
-    │       └── templates
-    │           └── aws-vpc.template
-    │  
+    │   └── quickstart-aws-vpc
+    │   └── quickstart-linux-bastion
+    │   └── quickstart-microsoft-rdgateway
     ├── templates
-    │   └── master.template.yaml
     │   └── workshop.template.yaml
+    │   └── workshop-master.template.yaml
     ├── .gitmodules
     └── .taskcat.yml
 </pre>
