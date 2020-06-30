@@ -113,3 +113,8 @@ The Parameters section of the template includes all of the parameters that will 
 	    Type: String
 	```
 
+Alternately, you can run the following command to automatically append the parameters to the file:
+
+```
+curl https://raw.githubusercontent.com/aws-quickstart/quickstart-workshop-labs/master/implementing/templates/40_workload_parameters.yaml >> templates/workshop.template.yaml
+```

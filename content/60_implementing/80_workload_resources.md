@@ -264,3 +264,8 @@ Go ahead and add the Resources section of the template into your local file. The
 	      AccessControl: BucketOwnerFullControl
 	```
 
+Alternately, you can run the following command to automatically append the resources to the file:
+
+```
+curl https://raw.githubusercontent.com/aws-quickstart/quickstart-workshop-labs/master/implementing/templates/80_workload_resources.yaml >> templates/workshop.template.yaml
+```

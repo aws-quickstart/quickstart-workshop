@@ -82,3 +82,8 @@ We will start by building the workload template. This deploys the actual workloa
 	        default: Workload nodes min size
 	```
 
+Alternately, you can run the following command to automatically append the description and metadata to the file:
+
+```
+curl https://raw.githubusercontent.com/aws-quickstart/quickstart-workshop-labs/master/implementing/templates/30_workload_description_and_metadata.yaml >> templates/workshop.template.yaml
+```

@@ -43,3 +43,8 @@ Next we’ll add the Mappings section of the template. We map an AMI ID for each
 	      AMZNLINUXHVM: ami-079f731edfe27c29c
 	```
 
+Alternately, you can run the following command to automatically append the mappings to the file:
+
+```
+curl https://raw.githubusercontent.com/aws-quickstart/quickstart-workshop-labs/master/implementing/templates/60_workload_mappings.yaml >> templates/workshop.template.yaml
+```

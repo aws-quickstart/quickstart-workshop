@@ -13,3 +13,8 @@ Conditions are basically Boolean variables; a condition is either true or false.
 	  UsingDefaultBucket: !Equals [!Ref QSS3BucketName, 'aws-quickstart']
 	```
 
+Alternately, you can run the following command to automatically append the conditions to the file:
+
+```
+curl https://raw.githubusercontent.com/aws-quickstart/quickstart-workshop-labs/master/implementing/templates/70_workload_conditions.yaml >> templates/workshop.template.yaml
+```

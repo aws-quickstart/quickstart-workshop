@@ -18,3 +18,8 @@ The final section of the Workload template is the Outputs. Once the template has
 	      - DNSName
 	```
 
+Alternately, you can run the following command to automatically append the outputs to the file:
+
+```
+curl https://raw.githubusercontent.com/aws-quickstart/quickstart-workshop-labs/master/implementing/templates/90_workload_outputs.yaml >> templates/workshop.template.yaml
+```

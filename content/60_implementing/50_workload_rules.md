@@ -30,3 +30,8 @@ Next, add the Rules section of the template. Rules ensure that the parameter val
 
 	```
 
+Alternately, you can run the following command to automatically append the rules to the file:
+
+```
+curl https://raw.githubusercontent.com/aws-quickstart/quickstart-workshop-labs/master/implementing/templates/50_workload_rules.yaml >> templates/workshop.template.yaml
+```

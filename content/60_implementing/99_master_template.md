@@ -418,3 +418,8 @@ In your IDE, save the “workload” template that should now be completely fill
 
 	```
 
+Alternately, you can run the following command to automatically append the template contents to the file:
+
+```
+curl https://raw.githubusercontent.com/aws-quickstart/quickstart-workshop-labs/master/implementing/templates/99_master_template.yaml >> templates/workshop-master.template.yaml
+```
