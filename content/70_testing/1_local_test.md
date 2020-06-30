@@ -78,17 +78,32 @@ For the workshop, open the **qs-workshop/.taskcat.yml** file and copy-paste the 
 
 ```
 project:
-  name: qs-workshop
+  name: quickstart-workshop
+  owner: quickstart-eng@amazon.com
+  package_lambda: false
   regions:
-  - ap-southeast-1
   - us-east-1
+  - us-east-2
+  - us-west-1
   - us-west-2
-  - eu-central-1
+  s3_bucket: ''
 tests:
-  default:
-    template: ./templates/master.template.yaml
+  bastion:
+    parameters:
+      AvailabilityZones: $[taskcat_genaz_2]
+      AdminPassword: $[taskcat_genpass_12]
+      QSS3BucketName: $[taskcat_autobucket]
+      QSS3BucketRegion: $[taskcat_current_region]
+      EnvironmentAccessType: Bastion
+      KeyPairName: $[taskcat_getkeypair]
+      OperatorEmail: test@test.com
+      RemoteAccessCIDR: 10.0.4.0/16
+      S3BucketName: $[taskcat_random-string]
     regions:
-    - us-west-1
+    - us-east-1
+    #- us-west-1
+    s3_bucket: ''
+    template: templates/workshop-master.template.yaml
 ```
 
 {{% notice tip %}}
@@ -99,40 +114,9 @@ TaskCat has several configuration files which can be used to set behaviors in a 
 
 When testing your CloudFormation templates, you need to pass parameter values to use for creating a stack. With TaskCat you can pass these parameter values from configuration file, described above. If you don't specify parameter values in the TaskCat configuration file, you should have default values defined in the template itself for all the parameters.
 
-As you can see in the _qs-workshop/.taskcat.yml_ file, there are no parameter values defined. To specify the parameter values, close the .taskcat.yml file and run the following command.
-
-```
-cd ~/environment/qs-workshop/
-curl -s https://raw.githubusercontent.com/aws-quickstart/quickstart-workshop-labs/master/implementing/.taskcat.yml >>.taskcat.yml
-```
-
-Your _.taskcat.yml_ file should look like below.
-
-<pre>
-project:
-  name: qs-workshop
-  regions:
-  - ap-southeast-1
-  - us-east-1
-  - us-west-2
-  - eu-central-1
-tests:
-  default:
-    template: ./templates/master.template.yaml
-    regions:
-    - us-west-1
-    parameters:
-      AvailabilityZones: "$[taskcat_getaz_2]"
-      EmailAddress: email@yourdomain.com
-      KeyPairName: YOUR-KEYPAIR-HERE
-      WebserverCIDR: "0.0.0.0/0"
-      QSS3KeyPrefix: "qs-workshop/"
-      QSS3BucketName: "$[taskcat_autobucket]"
-</pre>
-
-You need to replace the *YOUR-KEYPAIR-HERE* with your KeyPairName.
-
 As you can notice, there are few parameter values which is in the format **$[taskcat_*]**. These are the identifiers which are used to auto-generate the values at runtime by TaskCat. For the complete list of pre-defined identifiers, see the [TaskCat documentation](https://github.com/aws-quickstart/taskcat#more-information-on-taskcat-runtime-injection).
+
+One of these values is **$[taskcat_getkeypair]** for the KeyPairName parameter. You need to replace this with the key pair name of a key pair in your account in us-east-1.
 
 
 {{%expand "BONUS Section (May be skipped)" %}}
@@ -162,7 +146,7 @@ Run the following command in your terminal window:
 
 `cd ~/environment/qs-workshop`
 
-`taskcat test run &> screen-logs.txt &`
+`taskcat test run -l &> screen-logs.txt &`
 
 This will run TaskCat in the background and send logs/errors to *screen-logs.txt* file. TaskCat performs series of actions as part of executing a test, such as template validation, parameter validation, staging content into S3 bucket, and launching CloudFormation stack. It launches the stack creation in all the defined regions, for each test, simultaneously. And regularly polls the CloudFormation stack status to check if the stack creation is finished. How much time TaskCat takes to finish the testing, depends on how many tests you have defined in your TaskCat configuration file and how long each stack creation and deletion takes.
 
